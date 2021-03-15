@@ -1,0 +1,6 @@
+rootProject.name = 'task'
+include 'kodilla-testing'
+include 'kodilla-stream'
+include 'kodilla-exception'
+include 'kodilla-jdbc'
+include 'kodilla-hibernate'
