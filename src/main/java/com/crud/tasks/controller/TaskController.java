@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/task")
+@RequestMapping("/v1/task/")
 public class TaskController {
+    @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks() {
         return new ArrayList<>();
     }
-    @RequestMapping(method = RequestMethod.GET, value = "getTasks")
+    @RequestMapping(method = RequestMethod.GET, value = "getTask")
     public TaskDto getTask(Long taskId) {
         return new TaskDto(1L, "test title", "test_content");
     }
