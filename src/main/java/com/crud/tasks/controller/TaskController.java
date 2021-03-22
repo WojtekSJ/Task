@@ -33,9 +33,11 @@ public class TaskController {
         return taskMapper.mapToTaskDtoList(tasks);
     }
 
+
     @RequestMapping(method = RequestMethod.GET, value = "getTask")
     public TaskDto getTask(Long taskId) {
-        return new TaskDto(1L, "test title", "test_content");
+        Task tasks = service.getTasksByID(taskId);
+        return taskMapper.mapToTaskDto(tasks);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
