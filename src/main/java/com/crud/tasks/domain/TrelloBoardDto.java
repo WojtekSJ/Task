@@ -23,4 +23,7 @@ public class TrelloBoardDto {
         this.name = name;
         this.lists = lists;
     }
+
+    public TrelloBoardDto() {
+    }
 }

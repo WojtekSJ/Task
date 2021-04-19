@@ -11,6 +11,9 @@ public class TrelloCardDto {
         this.listId = listId;
     }
 
+    public TrelloCardDto() {
+    }
+
     private String name;
     private String description;
     private String pos;

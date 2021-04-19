@@ -49,7 +49,7 @@ public class TrelloClient {
                 .build()
                 .encode()
                 .toUri();
-        System.out.println("nasz string: " + url.toString());
+        //System.out.println("nasz string: " + url.toString());
         return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
     }
 
@@ -83,7 +83,7 @@ public class TrelloClient {
                     .map(Arrays::asList)
                     .orElse(Collections.emptyList())
                     .stream()
-                    //.filter(p -> Objects.nonNull(p.getId()) && Objects.nonNull(p.getName()))
+                    .filter(p -> Objects.nonNull(p.getId()) && Objects.nonNull(p.getName()))
                     //.filter(p -> p.getName().contains("Kodilla"))
                     .collect(Collectors.toList());
         } catch (RestClientException e) {

@@ -22,6 +22,8 @@ public class CreatedTrelloCard {
     @JsonProperty("shortUrl")
     private String shortUrl;
 
+    public CreatedTrelloCard() {
+    }
 
     public CreatedTrelloCard(String id, String name, String shortUrl) {
         this.id = id;
