@@ -4,6 +4,12 @@ import lombok.Data;
 
 @Data
 public class TrelloCardDto {
+    public TrelloCardDto(String name, String description, String pos, String listId) {
+        this.name = name;
+        this.description = description;
+        this.pos = pos;
+        this.listId = listId;
+    }
 
     private String name;
     private String description;
