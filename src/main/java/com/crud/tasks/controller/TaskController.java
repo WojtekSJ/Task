@@ -1,14 +1,23 @@
 package com.crud.tasks.controller;
 
+import com.crud.tasks.domain.Mail;
 import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
+import com.crud.tasks.service.SimpleEmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.internet.MimeMessage;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +28,7 @@ import java.util.Optional;
 public class TaskController {
     private final DbService service;
     private final TaskMapper taskMapper;
+    private final SimpleEmailService emailService;
 
     /*@Autowired
     public TaskController(DbService service, TaskMapper taskMapper) {
@@ -30,6 +40,16 @@ public class TaskController {
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks() {
         List<Task> tasks = service.getAllTasks();
+
+
+        /*Mail wiadomosc = new Mail(
+                "wojnad@o2.pl",
+                "toku2@o2.pl",
+                "Testowanie wysylki",
+                "Tasks: New Trello card"
+        );
+        emailService.send(wiadomosc);*/
+
         return taskMapper.mapToTaskDtoList(tasks);
     }
 
