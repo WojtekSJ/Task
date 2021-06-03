@@ -29,6 +29,7 @@ class TrelloClientTest {
 
     @Mock
     private TrelloConfig trelloConfig;
+
     @Test
     public void shouldFetchTrelloBoards() throws URISyntaxException {
         // Given
