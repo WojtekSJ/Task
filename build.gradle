@@ -59,6 +59,7 @@ dependencies {
 	//Heroku
 
 	//----------
+	testImplementation 'com.google.code.gson:gson'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 test {

@@ -26,30 +26,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("/v1/task/")
 public class TaskController {
-    private final DbService service;
-    private final TaskMapper taskMapper;
+    @Autowired
+    private DbService service;
+    @Autowired
+    private TaskMapper taskMapper;
     private final SimpleEmailService emailService;
 
-    /*@Autowired
-    public TaskController(DbService service, TaskMapper taskMapper) {
-        this.service = service;
-        this.taskMapper = taskMapper;
-    }*/
 
 
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks() {
         List<Task> tasks = service.getAllTasks();
-
-
-        /*Mail wiadomosc = new Mail(
-                "wojnad@o2.pl",
-                "toku2@o2.pl",
-                "Testowanie wysylki",
-                "Tasks: New Trello card"
-        );
-        emailService.send(wiadomosc);*/
-
         return taskMapper.mapToTaskDtoList(tasks);
     }
 
@@ -75,8 +62,9 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createTask(@RequestBody TaskDto taskDto) {
+    public TaskDto createTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
-        service.saveTask(task);
+        return taskMapper.mapToTaskDto(service.saveTask(task));
+
     }
 }
