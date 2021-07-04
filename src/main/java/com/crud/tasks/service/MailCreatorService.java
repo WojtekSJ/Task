@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.time.LocalDateTime;
+
 
 @Service
 public class MailCreatorService {
@@ -20,9 +22,11 @@ public class MailCreatorService {
     public String buildTrelloCardEmail(String message) {
         Context context = new Context();
         context.setVariable("message", message);
-        context.setVariable("tasks_url", "http://localhost:8888/crud");
+        context.setVariable("tasks_url", "https://wojteksj.github.io/");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("goodbyeMessage", adminConfig.getGoodbyeMessage() + " " + LocalDateTime.now());
+        context.setVariable("companyDetails", adminConfig.getCompanyDetails());
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 
