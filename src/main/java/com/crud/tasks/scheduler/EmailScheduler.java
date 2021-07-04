@@ -3,10 +3,12 @@ package com.crud.tasks.scheduler;
 
 import com.crud.tasks.domain.Mail;
 import com.crud.tasks.repository.TaskRepository;
+import com.crud.tasks.service.MailCreatorService;
 import com.crud.tasks.service.SimpleEmailService;
 import com.crud.tasks.trello.config.AdminConfig;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +28,7 @@ public class EmailScheduler {
         if(size==1) {
             taskText = "task";
         } else { taskText = "tasks";}
-        simpleEmailService.send(
+        simpleEmailService.sendScheduled(
                 new Mail(
                         adminConfig.getAdminMail(),
                         null,
