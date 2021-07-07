@@ -38,7 +38,6 @@ class TrelloControllerTest {
     void shouldFetchEmptyTrelloBoards() throws Exception {
         // Given
         when(trelloFacade.fetchTrelloBoards()).thenReturn(List.of());
-
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
